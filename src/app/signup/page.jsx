@@ -49,7 +49,10 @@ export default function Signup() {
         throw new Error(data.message || "Signup failed");
       }
 
-      router.push("/login");
+      // router.push("/login");
+      localStorage.setItem("token", data.token);
+      // console.log(data.token);
+      router.push("/dashboard");
     } catch (err) {
       setError(err.message);
     } finally {
