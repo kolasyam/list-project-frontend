@@ -39,19 +39,19 @@ const UploadFile = () => {
 
     try {
       await axios.post(
-        "https://list-project-backend-1.onrender.com/api/lists/upload",
+        "https://list-project-backend-1.onrender.com/api/subagents/lists/upload",
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${localStorage.getItem("token")}`, // Adjust if needed
+            Authorization: `Bearer ${localStorage.getItem("agenttoken")}`, // Adjust if needed
           },
         }
       );
 
       setSuccess(true);
       setTimeout(() => {
-        router.push("/dashboard"); // Redirect to dashboard
+        router.push("/agentdashboard"); // Redirect to agent dashboard
       }, 2000);
     } catch (err) {
       const errorMessage =
@@ -70,11 +70,11 @@ const UploadFile = () => {
       className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg border border-gray-200"
     >
       <button
-        onClick={() => router.push("/dashboard")}
+        onClick={() => router.push("/agentdashboard")}
         className="flex items-center text-blue-600 hover:underline mb-4"
       >
         <ArrowLeft size={20} className="mr-2" />
-        Back to Dashboard
+        Back to Agent Dashboard
       </button>
 
       <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">

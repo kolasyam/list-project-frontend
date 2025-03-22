@@ -22,7 +22,7 @@ export default function Login() {
 
     try {
       const response = await fetch(
-        "https://list-project-backend-1.onrender.com/api/admin/login",
+        "https://list-project-backend-1.onrender.com/api/subagents/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -31,10 +31,11 @@ export default function Login() {
       );
 
       const data = await response.json();
+      console.log(data);
       if (!response.ok) throw new Error(data.message || "Login failed");
-      localStorage.setItem("token", data.token);
-      // console.log(data.token);
-      router.push("/dashboard");
+      localStorage.setItem("agenttoken", data.token);
+      //   console.log(data.token);
+      router.push("/agentdashboard");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -48,15 +49,6 @@ export default function Login() {
         <h2 className="text-3xl font-bold text-center text-blue-800">
           Welcome Back
         </h2>
-        <p className="text-gray-600 text-center mt-2">
-          Login to continue or{" "}
-          <Link
-            href="/signup"
-            className="text-blue-600 hover:underline font-medium"
-          >
-            create an account
-          </Link>
-        </p>
 
         <form className="mt-6 space-y-5" onSubmit={handleSubmit}>
           <div>
@@ -100,15 +92,12 @@ export default function Login() {
           </button>
         </form>
 
-        <div className="flex text-center mt-5 justify-between">
-          <Link href="/" className="text-blue-600 hover:underline font-medium">
-            Back to home
-          </Link>
+        <div className="text-center mt-5">
           <Link
-            href="/agentlogin"
+            href="/login"
             className="text-blue-600 hover:underline font-medium"
           >
-            Agents Login
+            Back to Admin page
           </Link>
         </div>
       </div>
